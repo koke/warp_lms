@@ -13,6 +13,7 @@ function lms_course_options()
 	$lms_courses_page_id = get_option('lms_courses_page_id');
 	$lms_currency = get_option('lms_currency');
 	$lms_contact = get_option('lms_contact');
+	$lms_template_signup_subject = get_option('lms_template_signup_subject');
 	$lms_template_signup = get_option('lms_template_signup');
 	$lms_signup_notification = get_option('lms_signup_notification');
 	
@@ -66,6 +67,14 @@ function lms_course_options()
 				</tr>
 				<tr>
 					<th>
+						<?php _e( 'Signup notification subject', 'warp_lms'); ?>
+					</th>
+					<td>
+						<input type="text" name="lms_template_signup_subject" value="<?php echo $lms_template_signup_subject; ?>" id="lms_template_signup_subject" size="40" /><br />
+					</td>
+				</tr>
+				<tr>
+					<th>
 						<?php _e( 'Signup notification template', 'warp_lms'); ?>
 					</th>
 					<td>
@@ -79,13 +88,12 @@ function lms_course_options()
 					</th>
 					<td>
 						<input type="checkbox" name="lms_signup_notification" value="1" <?php if($lms_signup_notification) { echo 'checked="checked"'; } ?> id="lms_signup_notification" />
-						<input type="hidden" name="lms_signup_notification" value="0" />
 						<label for="lms_signup_notification">Notify the training team about new students</label>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-		<input type="hidden" name="page_options" value="lms_courses_page_id, lms_signup_period, lms_currency, lms_contact" />
+		<input type="hidden" name="page_options" value="lms_courses_page_id, lms_signup_period, lms_currency, lms_contact, lms_template_signup, lms_template_signup_subject, lms_signup_notification" />
 		<input type="hidden" name="action" value="update" />
 
 		<p class="submit"><input type="submit" value="<?php _e( 'Update Options', 'warp_lms'); ?>"></p>

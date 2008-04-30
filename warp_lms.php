@@ -186,7 +186,24 @@ function filter_lms_join_form($text)
 		}  else {
 			$student->registerTo($_POST["course_id"]);
 			// email confirmation
-			wp_mail($student->email, 'Welcome to course foo', 'Welcome', 'From: Training <' . get_option('lms_contact') . '>');
+			$body = get_option('lms_template_signup');
+			$body = preg_replace('/%student_name%/', $student->first_name, $body);
+			$body = preg_replace('/%student_surname%/', $student->last_name, $body);
+			$body = preg_replace('/%student_company%/', $student->company, $body);
+			$body = preg_replace('/%student_email%/', $student->email, $body);
+			$body = preg_replace('/%student_phone%/', $student->phone, $body);
+			
+			$body = preg_replace('/%course_name%/', $student->course->course->post_title, $body);
+			$body = preg_replace('/%course_start%/', $student->course->start_date, $body);
+			$body = preg_replace('/%course_end%/', $student->course->end_date, $body);
+			$body = preg_replace('/%course_price%/', $student->course->price(), $body);
+			
+			$to = sprintf("To: %s %s <%s>", $student->first_name, $student->last_name, $student->email);
+			wp_mail($student->email, get_option('lms_template_signup_subject'), $body, 'From: Training <' . get_option('lms_contact') . '>');
+			
+			if (get_option('lms_signup_notification') && get_option('lms_contact')) {
+				wp_mail(get_option('lms_contact'), get_option('lms_template_signup_subject'), $body, 'From: Training <' . get_option('lms_contact') . '>');				
+			}
 			$content.="<div class='success'>" . __('We have received your registration info. You\'ll receive an email with more information soon', 'warp_lms') . "</div>";
 		}
 	} else {

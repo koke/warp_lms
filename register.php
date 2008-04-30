@@ -35,6 +35,7 @@ function load_course_options()
 	add_option('lms_courses_page_id');
 	add_option('lms_currency', '€');
 	add_option('lms_contact', '');
+	add_option('lms_template_signup_subject', __( 'Your training info', 'warp_lms' ));
 	add_option('lms_template_signup', '');
 	add_option('lms_signup_notification', true);
 }

@@ -10,6 +10,7 @@ class Student
 	var $email;
 	var $phone;
 	var $id;
+	var $course;
 	
 	function __construct($first_name, $last_name, $company, $email, $phone)
 	{
@@ -55,6 +56,7 @@ class Student
 		
 		$table_name = $wpdb->prefix . "registrations";
 		$wpdb->query($wpdb->prepare("INSERT INTO $table_name (course_id, student_id) VALUES (%d, %d)", $course_id, $this->id));
+		$this->course = CourseInstance::find($course_id);
 	}
 	
 }
