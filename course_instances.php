@@ -6,7 +6,7 @@ function lms_add_pages()
 {
 	add_menu_page(__( 'Courses', 'warp_lms'), __( 'Courses', 'warp_lms'), 'manage_courses', __FILE__, 'courses_page');
 	// add_submenu_page(__FILE__, __( 'Dashboard', 'warp_lms'), __( 'Dashboard', 'warp_lms'), 'manage_courses', __FILE__, 'courses_page');
-	// add_submenu_page(__FILE__, __( 'Add course', 'warp_lms'), __( 'Add course', 'warp_lms'), 'manage_courses', 'warp_lms/add_course.php');
+	add_submenu_page(__FILE__, __( 'Students', 'warp_lms'), __( 'Students', 'warp_lms'), 'manage_courses', 'warp_lms/students.php', 'students_page');
 }
 
 function courses_page()
@@ -78,14 +78,18 @@ function list_courses()
 		  <tbody>
 		  <?php
 		  	foreach ($courses as $course) {
-		  		$course_post = get_post($course->course_id);
 				?>
 				<tr>
 					<th class="check-column" scope="row"><input type="checkbox" value="<?php echo $course->id; ?>" name="delete[]" /></th>
 					<td><?php echo mysql2date(__('Y/m/d'), $course->start_date); ?></td>
 					<td><?php echo mysql2date(__('Y/m/d'), $course->end_date); ?></td>
 					<td><?php echo $course->course->post_title; ?></td>
-					<td><?php echo count($course->students); ?></td>
+					<td><?php if (count($course->students) > 0) {
+						echo "<a href='?page=warp_lms/students.php&course_id=$course->id'>" . count($course->students) . "</a>";
+					} else {
+						echo count($course->students);
+					}
+					?></td>
 				</tr>
 				<?php
 		  	}
