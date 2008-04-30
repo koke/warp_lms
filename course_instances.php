@@ -49,7 +49,7 @@ function list_courses()
 		echo "<div class='updated'><p>" . __( 'Course removed successfully', 'warp_lms' ) . "</p></div>";
 	}
 
-	$courses = $wpdb->get_results("SELECT * FROM $table_name WHERE start_date > CURRENT_DATE ORDER BY start_date ASC");
+	$courses = CourseInstance::find_active();
 	if ($courses) {
 		?>
 		<form action="" method="post" id="courses-filter">
@@ -72,6 +72,7 @@ function list_courses()
 			<th scope="col"><?php _e( 'Starts on', 'warp_lms' ); ?></th>
 			<th scope="col"><?php _e( 'Ends on', 'warp_lms' ); ?></th>
 			<th scope="col"><?php _e( 'Course Name', 'warp_lms' ); ?></th>
+			<th scope="col"><?php _e( 'Students', 'warp_lms' ); ?></th>
 		  </tr>
 		  </thead>
 		  <tbody>
@@ -83,7 +84,8 @@ function list_courses()
 					<th class="check-column" scope="row"><input type="checkbox" value="<?php echo $course->id; ?>" name="delete[]" /></th>
 					<td><?php echo mysql2date(__('Y/m/d'), $course->start_date); ?></td>
 					<td><?php echo mysql2date(__('Y/m/d'), $course->end_date); ?></td>
-					<td><?php echo $course_post->post_title; ?></td>
+					<td><?php echo $course->course->post_title; ?></td>
+					<td><?php echo count($course->students); ?></td>
 				</tr>
 				<?php
 		  	}
@@ -107,10 +109,14 @@ class CourseInstance
 	
 	function __construct($id, $start_date, $end_date, $course_id)
 	{
+		global $wpdb;
+		$wpdb->query("SELECT 'New CourseInstance...'");
 		$this->id = $id;
 		$this->start_date = $start_date;
 		$this->end_date = $end_date;
 		$this->course = get_post($course_id);
+		$wpdb->query("SELECT 'Getting students...'");
+		$this->students = $this->fetch_students();
 	}
 	
 	public function price()
@@ -156,5 +162,23 @@ class CourseInstance
 		}
 		
 		return $result;
+	}
+	
+	private function fetch_students()
+	{
+		global $wpdb;
+		$results = $wpdb->get_results("
+			SELECT s.* 
+			FROM " . $wpdb->prefix . "lms_registrations r
+			LEFT JOIN " . $wpdb->prefix . "lms_students s ON s.id = r.student_id
+			WHERE r.course_id = $this->id
+		");
+		
+		$students = array();
+		foreach ($results as $student) {
+			$students[] = new Student($student->first_name, $student->last_name, $student->company, $student->email, $student->phone);
+		}
+		
+		return $students;
 	}
 }

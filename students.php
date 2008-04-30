@@ -54,7 +54,7 @@ class Student
 	{
 		global $wpdb;
 		
-		$table_name = $wpdb->prefix . "registrations";
+		$table_name = $wpdb->prefix . "lms_registrations";
 		$wpdb->query($wpdb->prepare("INSERT INTO $table_name (course_id, student_id) VALUES (%d, %d)", $course_id, $this->id));
 		$this->course = CourseInstance::find($course_id);
 	}
