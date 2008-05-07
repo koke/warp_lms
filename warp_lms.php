@@ -27,6 +27,7 @@ Author URI: http://koke.amedias.org/
 
 $warp_lms_version = '1.0';
 
+require_once 'i18n.php';
 require_once 'register.php';
 require_once 'lms_options.php';
 require_once 'course_instances.php';
@@ -42,6 +43,7 @@ add_filter('the_content', 'filter_lms_course_schedule');
 add_filter('the_content', 'filter_lms_join_form');
 add_action('admin_head', 'lms_js_calendar' );
 add_action('wp_head', 'lms_load_jquery');
+
 
 function lms_js_calendar()
 {

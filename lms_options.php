@@ -1,10 +1,12 @@
 <?php
 
+require_once 'i18n.php';
+
 add_action('admin_menu', 'lms_add_options_pages');
 
 function lms_add_options_pages()
 {
-	add_options_page(__('Courses'), __('Courses'), 8, 'lms_options', 'lms_course_options');
+	add_options_page(__('Courses', 'warp_lms'), __('Courses', 'warp_lms'), 8, 'lms_options', 'lms_course_options');
 }
 
 function lms_course_options()
@@ -88,7 +90,7 @@ function lms_course_options()
 					</th>
 					<td>
 						<input type="checkbox" name="lms_signup_notification" value="1" <?php if($lms_signup_notification) { echo 'checked="checked"'; } ?> id="lms_signup_notification" />
-						<label for="lms_signup_notification">Notify the training team about new students</label>
+						<label for="lms_signup_notification"><?php _e( 'Notify the training team about new students', 'warp_lms' ); ?></label>
 					</td>
 				</tr>
 			</tbody>

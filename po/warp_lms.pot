@@ -1,0 +1,210 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-05-07 16:58+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: add_course.php:13 warp_lms.php:145
+msgid "Course type"
+msgstr ""
+
+#: add_course.php:21
+msgid "Start date"
+msgstr ""
+
+#: add_course.php:35
+msgid "Add Course"
+msgstr ""
+
+#: course_instances.php:7 lms_options.php:9
+msgid "Courses"
+msgstr ""
+
+#: course_instances.php:9 course_instances.php:75
+msgid "Students"
+msgstr ""
+
+#: course_instances.php:23
+msgid "Error:"
+msgstr ""
+
+#: course_instances.php:23
+msgid "There is no duration defined for that course"
+msgstr ""
+
+#: course_instances.php:26
+msgid "Course added successfully"
+msgstr ""
+
+#: course_instances.php:30
+msgid "Add course"
+msgstr ""
+
+#: course_instances.php:45
+msgid "You are not allowed to delete this course."
+msgstr ""
+
+#: course_instances.php:49
+msgid "Course removed successfully"
+msgstr ""
+
+#: course_instances.php:59 students.php:21
+msgid "Delete"
+msgstr ""
+
+#: course_instances.php:72
+msgid "Starts on"
+msgstr ""
+
+#: course_instances.php:73
+msgid "Ends on"
+msgstr ""
+
+#: course_instances.php:74
+msgid "Course Name"
+msgstr ""
+
+#: course_instances.php:84 course_instances.php:85
+msgid "Y/m/d"
+msgstr ""
+
+#: lms_options.php:23
+msgid "Course Options"
+msgstr ""
+
+#: lms_options.php:27
+msgid "General options"
+msgstr ""
+
+#: lms_options.php:32
+msgid "Signup available until"
+msgstr ""
+
+#: lms_options.php:36
+msgid "Number of days before course date"
+msgstr ""
+
+#: lms_options.php:41
+msgid "Currency symbol"
+msgstr ""
+
+#: lms_options.php:49
+msgid "Courses page"
+msgstr ""
+
+#: lms_options.php:58
+msgid "Notifications"
+msgstr ""
+
+#: lms_options.php:63
+msgid "Contact email"
+msgstr ""
+
+#: lms_options.php:67
+msgid "Email address for training contact"
+msgstr ""
+
+#: lms_options.php:72
+msgid "Signup notification subject"
+msgstr ""
+
+#: lms_options.php:80
+msgid "Signup notification template"
+msgstr ""
+
+#: lms_options.php:83
+msgid "This is the mail which will be sent to the student upon registration"
+msgstr ""
+
+#: lms_options.php:89
+msgid "Notify me"
+msgstr ""
+
+#: lms_options.php:93
+msgid "Notify the training team about new students"
+msgstr ""
+
+#: lms_options.php:101
+msgid "Update Options"
+msgstr ""
+
+#: register.php:38
+msgid "Your training info"
+msgstr ""
+
+#: students.php:34
+msgid "First Name"
+msgstr ""
+
+#: students.php:35
+msgid "Last Name"
+msgstr ""
+
+#: students.php:36 warp_lms.php:109
+msgid "Company"
+msgstr ""
+
+#: students.php:37 warp_lms.php:110
+msgid "Email"
+msgstr ""
+
+#: students.php:38 warp_lms.php:112
+msgid "Phone"
+msgstr ""
+
+#: warp_lms.php:106
+msgid "Student info"
+msgstr ""
+
+#: warp_lms.php:107
+msgid "First name"
+msgstr ""
+
+#: warp_lms.php:108
+msgid "Last name"
+msgstr ""
+
+#: warp_lms.php:111
+msgid "Confirm email"
+msgstr ""
+
+#: warp_lms.php:144
+msgid "Course info"
+msgstr ""
+
+#: warp_lms.php:154
+#, php-format
+msgid "%s starting on %s"
+msgstr ""
+
+#: warp_lms.php:160
+msgid "Course price"
+msgstr ""
+
+#: warp_lms.php:172
+msgid "Register for this course"
+msgstr ""
+
+#: warp_lms.php:187
+#, php-format
+msgid ""
+"There was an error registering the student. Please contact %s to register"
+msgstr ""
+
+#: warp_lms.php:209
+msgid ""
+"We have received your registration info. You'll receive an email with more "
+"information soon"
+msgstr ""
