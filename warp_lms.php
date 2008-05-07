@@ -25,7 +25,7 @@ Author URI: http://koke.amedias.org/
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-$warp_lms_version = '0.1';
+define(warp_lms_version, '0.1');
 
 require_once 'i18n.php';
 require_once 'register.php';

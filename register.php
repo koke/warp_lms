@@ -90,5 +90,5 @@ function create_lms_tables()
 		dbDelta($sql);
 	}	
 	
-	add_option('warp_lms_version', $warp_lms_version);
+	add_option('warp_lms_version', warp_lms_version);
 }
