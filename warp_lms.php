@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Warp Learning Management System
-Plugin URI: http://labs.warp.es/warp-lms
+Plugin URI: http://people.warp.es/~koke/wp-plugins/warp-lms
 Description: Allow management of training schedule
 Version: 0.1
 Author: Jorge Bernal
