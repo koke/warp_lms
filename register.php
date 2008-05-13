@@ -91,4 +91,5 @@ function create_lms_tables()
 	}	
 	
 	add_option('warp_lms_version', warp_lms_version);
+	update_option('warp_lms_version', warp_lms_version);
 }
