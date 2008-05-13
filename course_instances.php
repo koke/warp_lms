@@ -123,12 +123,12 @@ class CourseInstance
 		$this->students = $this->fetch_students();
 	}
 	
-	public function price()
+	function price()
 	{
 		return get_post_meta($this->course->ID, 'course_price', true);
 	}
 	
-	public static function find_by_course($course_id)
+	function find_by_course($course_id)
 	{
 		global $wpdb;
 		$table_name = $wpdb->prefix . "lms_instances";	
@@ -142,7 +142,7 @@ class CourseInstance
 		return $result;
 	}
 	
-	public static function find($id)
+	function find($id)
 	{
 		global $wpdb;
 		$table_name = $wpdb->prefix . "lms_instances";	
@@ -154,7 +154,7 @@ class CourseInstance
 		return $result;		
 	}
 	
-	public static function find_active()
+	function find_active()
 	{
 		global $wpdb;
 		$table_name = $wpdb->prefix . "lms_instances";	
@@ -168,7 +168,7 @@ class CourseInstance
 		return $result;
 	}
 	
-	private function fetch_students()
+	function fetch_students()
 	{
 		global $wpdb;
 		$results = $wpdb->get_results("

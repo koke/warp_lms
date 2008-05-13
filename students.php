@@ -88,7 +88,7 @@ class Student
 		$this->table_name = $wpdb->prefix . "lms_students";
 	}
 	
-	public function save()
+	function save()
 	{
 		global $wpdb;
 		if (isset($this->id)) {
@@ -113,7 +113,7 @@ class Student
 		return $result;
 	}
 	
-	public function registerTo($course_id)
+	function registerTo($course_id)
 	{
 		global $wpdb;
 		
@@ -122,7 +122,7 @@ class Student
 		$this->course = CourseInstance::find($course_id);
 	}
 
-	public static function find_all()
+	function find_all()
 	{
 		global $wpdb;
 		$results = $wpdb->get_results("
@@ -143,7 +143,7 @@ class Student
 		return $students;
 	}
 
-	public static function find_all_by_course($course_id)
+	function find_all_by_course($course_id)
 	{
 		global $wpdb;
 		$results = $wpdb->get_results($wpdb->prepare("
