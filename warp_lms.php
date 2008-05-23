@@ -89,7 +89,7 @@ EOI;
 		}
 	}
 	$course_schedule.= "</table>";
-	$content = preg_replace('/%lms_course_schedule%/', $course_schedule, $content);
+	$content = preg_replace('/(<p>)?%lms_course_schedule%(<\/p)?/', $course_schedule, $content);
 	return $content;
 }
 
