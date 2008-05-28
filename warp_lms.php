@@ -82,7 +82,7 @@ EOC;
 				$course_schedule.= <<<EOI
 				  <tr class="course_instance">
 				    <td>$course_instance->start_date</td>
-				    <td><a href="$register_link">Inscribete</a></td>
+				    <td class='join'><a href="$register_link">Inscribete</a></td>
 				  </tr>
 EOI;
 			}
