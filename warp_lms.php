@@ -94,7 +94,7 @@ EOI;
         $edate = "<abbr class='dtend' title='$course_instance->end_date'>$edate</abbr>";
         $date = sprintf(__( 'From %s to %s', 'warp_lms'), $sdate, $edate);
 				$course_schedule.= <<<EOI
-				        $date;
+				        $date
 				      </div>
 				    </td>
 				    <td class='join'><a href="$register_link">Inscribete</a></td>
