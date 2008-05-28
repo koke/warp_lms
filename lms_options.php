@@ -11,6 +11,7 @@ function lms_add_options_pages()
 
 function lms_course_options()
 {
+  add_option('lms_date_format', 'F j');
 	$lms_signup_period = get_option('lms_signup_period');
 	$lms_courses_page_id = get_option('lms_courses_page_id');
 	$lms_currency = get_option('lms_currency');
@@ -18,6 +19,7 @@ function lms_course_options()
 	$lms_template_signup_subject = get_option('lms_template_signup_subject');
 	$lms_template_signup = get_option('lms_template_signup');
 	$lms_signup_notification = get_option('lms_signup_notification');
+	$lms_date_format = get_option('lms_date_format');
 	
 	echo "<div class='wrap'>";
 	echo "<h2>" . __( 'Course Options', 'warp_lms') . "</h2>";
@@ -50,6 +52,16 @@ function lms_course_options()
 					</th>
 					<td>
 						<?php wp_dropdown_pages(array('name' => 'lms_courses_page_id', 'selected' => $lms_courses_page_id)); ?>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<?php _e( 'Date format', 'warp_lms'); ?>
+					</th>
+					<td>
+						<input type="text" name="lms_date_format" value="<?php echo $lms_date_format; ?>" id="lms_date_format" /><br />
+						<?php _e('<a href="http://codex.wordpress.org/Formatting_Date_and_Time">Documentation on date formatting</a>. Click "Save Changes" to update sample output.') ?><br />
+						<?php _e('Output:') ?> <strong><?php echo mysql2date(get_option('lms_date_format'), current_time('mysql')); ?></strong>
 					</td>
 				</tr>
 			</tbody>
@@ -95,7 +107,7 @@ function lms_course_options()
 				</tr>
 			</tbody>
 		</table>
-		<input type="hidden" name="page_options" value="lms_courses_page_id, lms_signup_period, lms_currency, lms_contact, lms_template_signup, lms_template_signup_subject, lms_signup_notification" />
+		<input type="hidden" name="page_options" value="lms_courses_page_id, lms_signup_period, lms_currency, lms_contact, lms_template_signup, lms_template_signup_subject, lms_signup_notification, lms_date_format" />
 		<input type="hidden" name="action" value="update" />
 
 		<p class="submit"><input type="submit" value="<?php _e( 'Update Options', 'warp_lms'); ?>"></p>
