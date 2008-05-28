@@ -75,7 +75,7 @@ class Student
 	var $id;
 	var $course;
 	
-	function __construct($first_name, $last_name, $company, $email, $phone)
+	function Student($first_name, $last_name, $company, $email, $phone)
 	{
 		global $wpdb;
 		

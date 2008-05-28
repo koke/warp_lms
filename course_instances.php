@@ -111,7 +111,7 @@ class CourseInstance
 	var $end_date;
 	var $course;
 	
-	function __construct($id, $start_date, $end_date, $course_id)
+	function CourseInstance($id, $start_date, $end_date, $course_id)
 	{
 		global $wpdb;
 		$wpdb->query("SELECT 'New CourseInstance...'");
