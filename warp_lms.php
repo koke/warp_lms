@@ -81,7 +81,22 @@ EOC;
 				$register_link = get_option('siteurl') . '/inscripcion/' . $course_instance->id;
 				$course_schedule.= <<<EOI
 				  <tr class="course_instance">
-				    <td>$course_instance->start_date</td>
+				    <td>
+				      <div class="vevent">
+				        <a class="url" href="$permalink">
+				          <span class="summary">$course->post_title</span>
+				        </a>
+EOI;
+        $df = get_option('lms_date_format');
+        $sdate = mysql2date($df, $course_instance->start_date);
+        $sdate = "<abbr class='dtstart' title='$course_instance->start_date'>$sdate</abbr>";
+        $edate = mysql2date($df, $course_instance->end_date);
+        $edate = "<abbr class='dtend' title='$course_instance->end_date'>$edate</abbr>";
+        $date = sprintf(__( 'From %s to %s', 'warp_lms'), $sdate, $edate);
+				$course_schedule.= <<<EOI
+				        $date;
+				      </div>
+				    </td>
 				    <td class='join'><a href="$register_link">Inscribete</a></td>
 				  </tr>
 EOI;
