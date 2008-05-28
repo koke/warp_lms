@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-07 16:58+0200\n"
+"POT-Creation-Date: 2008-05-28 12:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: add_course.php:13 warp_lms.php:145
+#: add_course.php:13 warp_lms.php:160
 msgid "Course type"
 msgstr ""
 
@@ -80,63 +80,78 @@ msgstr ""
 msgid "Y/m/d"
 msgstr ""
 
-#: lms_options.php:23
+#: lms_options.php:25
 msgid "Course Options"
 msgstr ""
 
-#: lms_options.php:27
+#: lms_options.php:29
 msgid "General options"
 msgstr ""
 
-#: lms_options.php:32
+#: lms_options.php:34
 msgid "Signup available until"
 msgstr ""
 
-#: lms_options.php:36
+#: lms_options.php:38
 msgid "Number of days before course date"
 msgstr ""
 
-#: lms_options.php:41
+#: lms_options.php:43
 msgid "Currency symbol"
 msgstr ""
 
-#: lms_options.php:49
+#: lms_options.php:51
 msgid "Courses page"
 msgstr ""
 
-#: lms_options.php:58
-msgid "Notifications"
+#: lms_options.php:59
+msgid "Date format"
 msgstr ""
 
 #: lms_options.php:63
+msgid ""
+"<a href=\"http://codex.wordpress.org/Formatting_Date_and_Time"
+"\">Documentation on date formatting</a>. Click \"Save Changes\" to update "
+"sample output."
+msgstr ""
+
+#: lms_options.php:64
+msgid "Output:"
+msgstr ""
+
+#: lms_options.php:70
+msgid "Notifications"
+msgstr ""
+
+#: lms_options.php:75
 msgid "Contact email"
 msgstr ""
 
-#: lms_options.php:67
+#: lms_options.php:79
 msgid "Email address for training contact"
 msgstr ""
 
-#: lms_options.php:72
+#: lms_options.php:84
 msgid "Signup notification subject"
 msgstr ""
 
-#: lms_options.php:80
+#: lms_options.php:92
 msgid "Signup notification template"
 msgstr ""
 
-#: lms_options.php:83
+#: lms_options.php:95
 msgid "This is the mail which will be sent to the student upon registration"
 msgstr ""
 
-#: lms_options.php:89
+#: lms_options.php:101
 msgid "Notify me"
 msgstr ""
 
-#: lms_options.php:93
+#: lms_options.php:105
 msgid "Notify the training team about new students"
 msgstr ""
 
-#: lms_options.php:101
+#: lms_options.php:113
 msgid "Update Options"
 msgstr ""
 
@@ -152,58 +167,63 @@ msgstr ""
 msgid "Last Name"
 msgstr ""
 
-#: students.php:36 warp_lms.php:109
+#: students.php:36 warp_lms.php:124
 msgid "Company"
 msgstr ""
 
-#: students.php:37 warp_lms.php:110
+#: students.php:37 warp_lms.php:125
 msgid "Email"
 msgstr ""
 
-#: students.php:38 warp_lms.php:112
+#: students.php:38 warp_lms.php:127
 msgid "Phone"
 msgstr ""
 
-#: warp_lms.php:106
+#: warp_lms.php:95
+#, php-format
+msgid "From %s to %s"
+msgstr ""
+
+#: warp_lms.php:121
 msgid "Student info"
 msgstr ""
 
-#: warp_lms.php:107
+#: warp_lms.php:122
 msgid "First name"
 msgstr ""
 
-#: warp_lms.php:108
+#: warp_lms.php:123
 msgid "Last name"
 msgstr ""
 
-#: warp_lms.php:111
+#: warp_lms.php:126
 msgid "Confirm email"
 msgstr ""
 
-#: warp_lms.php:144
+#: warp_lms.php:159
 msgid "Course info"
 msgstr ""
 
-#: warp_lms.php:154
+#: warp_lms.php:169
 #, php-format
 msgid "%s starting on %s"
 msgstr ""
 
-#: warp_lms.php:160
+#: warp_lms.php:175
 msgid "Course price"
 msgstr ""
 
-#: warp_lms.php:172
+#: warp_lms.php:187
 msgid "Register for this course"
 msgstr ""
 
-#: warp_lms.php:187
+#: warp_lms.php:202
 #, php-format
 msgid ""
 "There was an error registering the student. Please contact %s to register"
 msgstr ""
 
-#: warp_lms.php:209
+#: warp_lms.php:224
 msgid ""
 "We have received your registration info. You'll receive an email with more "
 "information soon"
