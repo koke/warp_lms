@@ -18,7 +18,7 @@ function courses_page()
 	
 	if (isset($_POST['action'])) {
 		$course_id = (int) $_POST["course_id"];
-		$duration = get_post_meta($course_id, 'course_duration', true);
+		$duration = get_post_meta($course_id, 'Duration', true);
 		if (empty($duration)) {
 			echo "<div class='error'><p><strong>". __( 'Error:', 'warp_lms') . "</strong> " . __( 'There is no duration defined for that course', 'warp_lms' ) . "</p></div>";
 		} else {
