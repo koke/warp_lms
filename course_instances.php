@@ -6,7 +6,7 @@ function lms_add_pages()
 {
 	add_menu_page(__( 'Courses', 'warp_lms'), __( 'Courses', 'warp_lms'), 'manage_courses', __FILE__, 'courses_page');
 	// add_submenu_page(__FILE__, __( 'Dashboard', 'warp_lms'), __( 'Dashboard', 'warp_lms'), 'manage_courses', __FILE__, 'courses_page');
-	add_submenu_page(__FILE__, __( 'Students', 'warp_lms'), __( 'Students', 'warp_lms'), 'manage_courses', 'warp_lms/students.php', 'students_page');
+  // add_submenu_page(__FILE__, __( 'Students', 'warp_lms'), __( 'Students', 'warp_lms'), 'manage_courses', 'warp_lms/students.php', 'students_page');
 }
 
 function courses_page()
