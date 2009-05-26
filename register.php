@@ -58,6 +58,8 @@ function create_lms_tables()
 					id mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT,
 					start_date date NOT NULL,
 					end_date date NOT NULL,
+					location varchar(255) NOT NULL,
+					price varchar(10) NOT NULL,
 					course_id bigint(20) UNSIGNED NOT NULL,
 					PRIMARY KEY(id),
 					FOREIGN KEY (course_id) REFERENCES " . $wpdb->prefix . "posts (ID)

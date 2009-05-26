@@ -22,7 +22,7 @@ function courses_page()
 		if (empty($duration)) {
 			echo "<div class='error'><p><strong>". __( 'Error:', 'warp_lms') . "</strong> " . __( 'There is no duration defined for that course', 'warp_lms' ) . "</p></div>";
 		} else {
-			$wpdb->query($wpdb->prepare("INSERT INTO $table_name (start_date, end_date, course_id) VALUES ('%s','%s' + INTERVAL %d DAY, %d)", $_POST['start_date'], $_POST['start_date'], $duration-1, $_POST['course_id']));
+			$wpdb->query($wpdb->prepare("INSERT INTO $table_name (start_date, end_date, location, price, course_id) VALUES ('%s','%s' + INTERVAL %d DAY, %s, %s, %d)", $_POST['start_date'], $_POST['start_date'], $duration-1, $_POST['location'], $_POST['price'], $_POST['course_id']));
 			echo "<div class='updated'><p>" . __( 'Course added successfully', 'warp_lms' ) . "</p></div>";
 		}
 	}
@@ -72,7 +72,8 @@ function list_courses()
 			<th scope="col"><?php _e( 'Starts on', 'warp_lms' ); ?></th>
 			<th scope="col"><?php _e( 'Ends on', 'warp_lms' ); ?></th>
 			<th scope="col"><?php _e( 'Course Name', 'warp_lms' ); ?></th>
-			<th scope="col"><?php _e( 'Students', 'warp_lms' ); ?></th>
+			<th scope="col"><?php _e( 'Location', 'warp_lms' ); ?></th>
+			<th scope="col"><?php _e( 'Price', 'warp_lms' ); ?></th>
 		  </tr>
 		  </thead>
 		  <tbody>
@@ -84,12 +85,8 @@ function list_courses()
 					<td><?php echo mysql2date(__('Y/m/d'), $course->start_date); ?></td>
 					<td><?php echo mysql2date(__('Y/m/d'), $course->end_date); ?></td>
 					<td><?php echo $course->course->post_title; ?></td>
-					<td><?php if (count($course->students) > 0) {
-						echo "<a href='?page=warp_lms/students.php&course_id=$course->id'>" . count($course->students) . "</a>";
-					} else {
-						echo count($course->students);
-					}
-					?></td>
+					<td><?php echo $course->location; ?></td>
+					<td><?php echo $course->price; ?></td>
 				</tr>
 				<?php
 		  	}
@@ -111,13 +108,15 @@ class CourseInstance
 	var $end_date;
 	var $course;
 	
-	function CourseInstance($id, $start_date, $end_date, $course_id)
+	function CourseInstance($id, $start_date, $end_date, $course_id, $location, $price)
 	{
 		global $wpdb;
 		$wpdb->query("SELECT 'New CourseInstance...'");
 		$this->id = $id;
 		$this->start_date = $start_date;
 		$this->end_date = $end_date;
+		$this->location = $location;
+		$this->price = $price;
 		$this->course = get_post($course_id);
 		$wpdb->query("SELECT 'Getting students...'");
 		$this->students = $this->fetch_students();
@@ -134,9 +133,9 @@ class CourseInstance
 		$table_name = $wpdb->prefix . "lms_instances";	
 		
 		$result = array();
-		$courses = $wpdb->get_results($wpdb->prepare("SELECT id, start_date, end_date, course_id FROM $table_name WHERE course_id = %d AND start_date > CURRENT_DATE ORDER BY start_date", $course_id));
+		$courses = $wpdb->get_results($wpdb->prepare("SELECT id, start_date, end_date, location, price, course_id FROM $table_name WHERE course_id = %d AND start_date > CURRENT_DATE ORDER BY start_date", $course_id));
 		foreach ($courses as $course) {
-			$result[] = new CourseInstance($course->id, $course->start_date, $course->end_date, $course->course_id);
+			$result[] = new CourseInstance($course->id, $course->start_date, $course->end_date, $course->course_id, $course->location, $course->price);
 		}
 		
 		return $result;
@@ -148,8 +147,8 @@ class CourseInstance
 		$table_name = $wpdb->prefix . "lms_instances";	
 		
 		$result = array();
-		$course = $wpdb->get_row($wpdb->prepare("SELECT id, start_date, end_date, course_id FROM $table_name WHERE id = %d", $id));
-		$result = new CourseInstance($course->id, $course->start_date, $course->end_date, $course->course_id);
+		$course = $wpdb->get_row($wpdb->prepare("SELECT id, start_date, end_date, location, price, course_id FROM $table_name WHERE id = %d", $id));
+		$result = new CourseInstance($course->id, $course->start_date, $course->end_date, $course->course_id, $course->location, $course->price);
 		
 		return $result;		
 	}
@@ -160,9 +159,9 @@ class CourseInstance
 		$table_name = $wpdb->prefix . "lms_instances";	
 		
 		$result = array();
-		$courses = $wpdb->get_results($wpdb->prepare("SELECT id, start_date, end_date, course_id FROM $table_name WHERE start_date > CURRENT_DATE ORDER BY start_date"));
+		$courses = $wpdb->get_results($wpdb->prepare("SELECT id, start_date, end_date, location, price, course_id FROM $table_name WHERE start_date > CURRENT_DATE ORDER BY start_date LIMIT 5"));
 		foreach ($courses as $course) {
-			$result[] = new CourseInstance($course->id, $course->start_date, $course->end_date, $course->course_id);
+			$result[] = new CourseInstance($course->id, $course->start_date, $course->end_date, $course->course_id, $course->location, $course->price);
 		}
 		
 		return $result;

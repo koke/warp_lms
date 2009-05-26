@@ -18,6 +18,22 @@
 				</tr>
 				<tr>
 					<th>
+						<?php _e( 'Location', 'warp_lms'); ?>
+					</th>
+					<td>
+						<input type="text" name="location" id="location" size="20" />
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<?php _e( 'Price', 'warp_lms'); ?>
+					</th>
+					<td>
+						<input type="text" name="price" id="price" size="10" maxlength="10" />
+					</td>
+				</tr>
+				<tr>
+					<th>
 						<?php _e( 'Start date', 'warp_lms'); ?>
 					</th>
 					<td>
