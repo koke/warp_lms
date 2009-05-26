@@ -48,7 +48,6 @@ add_action('wp_head', 'lms_load_jquery');
 function lms_js_calendar()
 {
 	echo '
-<script type="text/javascript" src="' . get_option('siteurl') . '/wp-admin/js/forms.js"></script>
 <script type="text/javascript" src="' . get_option('siteurl') . '/wp-content/plugins/warp_lms/ui.datepicker.js"></script>
 <link rel="stylesheet" href="' . get_option('siteurl') . '/wp-content/plugins/warp_lms/ui.datepicker.css" type="text/css" />
 ';
@@ -69,16 +68,16 @@ function filter_lms_course_schedule($content) {
 	foreach ($courses as $course) {
 		$permalink = get_page_link($course->ID);
 		$price = get_post_meta($course->ID, 'course_price', true);
-		if (!empty($price)) {
-			$course_instances = CourseInstance::find_by_course($course->ID);
-			$course_schedule.= <<<EOC
-			  <tr class="course">
-			    <td><a href="$permalink">$course->post_title</a></td>
-			    <td class="price">$price €</td>
-			  </tr>
-EOC;
+		$course_instances = CourseInstance::find_by_course($course->ID);
+		if ($course_instances) {
+//      $course_schedule.= <<<EOC
+//        <tr class="course">
+//          <td><a href="$permalink">$course->post_title</a></td>
+//          <td class="price">$price €</td>
+//        </tr>
+// EOC;
 			foreach ($course_instances as $course_instance) {
-				$register_link = get_option('siteurl') . '/inscripcion/' . $course_instance->id;
+        // $register_link = get_option('siteurl') . '/inscripcion/' . $course_instance->id;
 				$course_schedule.= <<<EOI
 				  <tr class="course_instance">
 				    <td>
@@ -97,10 +96,9 @@ EOI;
 				        $date
 				      </div>
 				    </td>
-				    <td class='join'><a href="$register_link">Inscribete</a></td>
 				  </tr>
 EOI;
-			}
+      }
 		}
 	}
 	$course_schedule.= "</table>";

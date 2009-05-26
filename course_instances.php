@@ -15,6 +15,7 @@ function courses_page()
 	$table_name = $wpdb->prefix . "lms_instances";
 	
 	echo '<div class="wrap">';
+	echo "<h2>" . __( 'Courses', 'warp_lms') . "</h2>";
 	
 	if (isset($_POST['action'])) {
 		$course_id = (int) $_POST["course_id"];
