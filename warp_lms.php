@@ -55,6 +55,7 @@ function lms_js_calendar()
 
 function lms_load_jquery()
 {
+  return;
 		echo '
 <script type="text/javascript" src="' . get_option('siteurl') . '/wp-includes/js/jquery/jquery.js"></script>
 <script type="text/javascript" src="' . get_option('siteurl') . '/wp-content/plugins/warp_lms/livevalidation.js"></script>
