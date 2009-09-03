@@ -23,7 +23,22 @@ function courses_page()
 		if (empty($duration)) {
 			echo "<div class='error'><p><strong>". __( 'Error:', 'warp_lms') . "</strong> " . __( 'There is no duration defined for that course', 'warp_lms' ) . "</p></div>";
 		} else {
-			$wpdb->query($wpdb->prepare("INSERT INTO $table_name (start_date, end_date, location, price, course_id) VALUES ('%s','%s' + INTERVAL %d DAY, %s, %s, %d)", $_POST['start_date'], $_POST['start_date'], $duration-1, $_POST['location'], $_POST['price'], $_POST['course_id']));
+			$wpdb->query(
+			  $wpdb->prepare("
+			    INSERT INTO $table_name 
+			    (start_date, end_date, location, price, course_id, online, code) 
+			    VALUES ('%s','%s' + INTERVAL %d DAY, %s, %s, %d, %d, '%s')", 
+			    mysql_real_escape_string($_POST['start_date']), 
+			    mysql_real_escape_string($_POST['start_date']), 
+			    $duration-1, 
+			    mysql_real_escape_string($_POST['location']), 
+			    mysql_real_escape_string($_POST['price']),
+			    $_POST['course_id'],
+			    $_POST['online'], 
+			    mysql_real_escape_string($_POST['code'])
+			  )
+			);
+
 			echo "<div class='updated'><p>" . __( 'Course added successfully', 'warp_lms' ) . "</p></div>";
 		}
 	}
@@ -160,9 +175,14 @@ class CourseInstance
 		$table_name = $wpdb->prefix . "lms_instances";	
 		
 		$result = array();
-		$courses = $wpdb->get_results($wpdb->prepare("SELECT id, start_date, end_date, location, price, course_id FROM $table_name WHERE start_date > CURRENT_DATE ORDER BY start_date LIMIT 5"));
+		$courses = $wpdb->get_results($wpdb->prepare("SELECT id, start_date, end_date, location, online, price, course_id FROM $table_name WHERE start_date > CURRENT_DATE OR online = 1 ORDER BY start_date LIMIT 5"));
 		foreach ($courses as $course) {
-			$result[] = new CourseInstance($course->id, $course->start_date, $course->end_date, $course->course_id, $course->location, $course->price);
+				if ($course->online == "1") {
+					$location = "online";
+				} else {
+				$location = $course->location;
+				}
+			$result[] = new CourseInstance($course->id, $course->start_date, $course->end_date, $course->course_id, $location, $course->price);
 		}
 		
 		return $result;

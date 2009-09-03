@@ -10,10 +10,29 @@
 			<tbody>
 				<tr>
 					<th>
-						<?php _e( 'Course type', 'warp_lms'); ?>
+						<?php _e( 'Course', 'warp_lms'); ?>
 					</th>
 					<td>
 						<?php wp_dropdown_pages(array('name' => 'course_id', 'child_of' => $lms_courses_page_id, 'depth' => 1)); ?>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<?php _e( 'Course type', 'warp_lms'); ?>
+					</th>
+					<td>
+						<select name="online" id="online">
+							<option value="0">In-person</option>
+							<option value="1">Online</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<?php _e( 'Code', 'warp_lms'); ?>
+					</th>
+					<td>
+						<input type="text" name="code" id="code" size="10" maxlength="10" />
 					</td>
 				</tr>
 				<tr>
@@ -30,6 +49,10 @@
 					</th>
 					<td>
 						<input type="text" name="price" id="price" size="10" maxlength="10" />
+						<select name="currency" id="currency">
+							<option id="EUR">Euro</option>
+							<option id="USD">US Dollar</option>
+						</select>
 					</td>
 				</tr>
 				<tr>

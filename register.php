@@ -56,12 +56,16 @@ function create_lms_tables()
 	if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
 		$sql = "CREATE TABLE $table_name (
 					id mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT,
-					start_date date NOT NULL,
-					end_date date NOT NULL,
-					location varchar(255) NOT NULL,
+					start_date date NULL,
+					end_date date NULL,
+					location varchar(255) NULL,
 					price varchar(10) NOT NULL,
 					course_id bigint(20) UNSIGNED NOT NULL,
+					code VARCHAR(10) NOT NULL,
+					online TINYINT(1) NOT NULL DEFAULT 0,
+					currency CHAR(3) not null default 'EUR',
 					PRIMARY KEY(id),
+					UNIQUE KEY(code),
 					FOREIGN KEY (course_id) REFERENCES " . $wpdb->prefix . "posts (ID)
 				)";
 		dbDelta($sql);
