@@ -236,5 +236,12 @@ function lms_rewrite($wp_rewrite)
 		);
 }
 
+function lms_moodle_url($url) {
+  $result = get_option('lms_moodle');
+  if (substr($result, -1) != "/") {
+    $result .= "/";
+  }
+  return $result.$url;
+}
 
 ?>

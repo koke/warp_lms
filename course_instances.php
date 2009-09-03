@@ -124,7 +124,7 @@ class CourseInstance
 	var $end_date;
 	var $course;
 	
-	function CourseInstance($id, $start_date, $end_date, $course_id, $location, $price)
+	function CourseInstance($id, $start_date, $end_date, $course_id, $location, $price, $code, $online)
 	{
 		global $wpdb;
 		$wpdb->query("SELECT 'New CourseInstance...'");
@@ -133,6 +133,8 @@ class CourseInstance
 		$this->end_date = $end_date;
 		$this->location = $location;
 		$this->price = $price;
+		$this->code = $code;
+		$this->online = ($online == "1");
 		$this->course = get_post($course_id);
 		$wpdb->query("SELECT 'Getting students...'");
 		$this->students = $this->fetch_students();
@@ -149,9 +151,9 @@ class CourseInstance
 		$table_name = $wpdb->prefix . "lms_instances";	
 		
 		$result = array();
-		$courses = $wpdb->get_results($wpdb->prepare("SELECT id, start_date, end_date, location, price, course_id FROM $table_name WHERE course_id = %d AND start_date > CURRENT_DATE ORDER BY start_date", $course_id));
+		$courses = $wpdb->get_results($wpdb->prepare("SELECT id, start_date, end_date, location, price, course_id, code, online FROM $table_name WHERE course_id = %d AND start_date > CURRENT_DATE ORDER BY start_date", $course_id));
 		foreach ($courses as $course) {
-			$result[] = new CourseInstance($course->id, $course->start_date, $course->end_date, $course->course_id, $course->location, $course->price);
+			$result[] = new CourseInstance($course->id, $course->start_date, $course->end_date, $course->course_id, $course->location, $course->price, $course->code, $course->online);
 		}
 		
 		return $result;
@@ -163,26 +165,30 @@ class CourseInstance
 		$table_name = $wpdb->prefix . "lms_instances";	
 		
 		$result = array();
-		$course = $wpdb->get_row($wpdb->prepare("SELECT id, start_date, end_date, location, price, course_id FROM $table_name WHERE id = %d", $id));
-		$result = new CourseInstance($course->id, $course->start_date, $course->end_date, $course->course_id, $course->location, $course->price);
+		$course = $wpdb->get_row($wpdb->prepare("SELECT id, start_date, end_date, location, price, course_id, code, online FROM $table_name WHERE id = %d", $id));
+		$result = new CourseInstance($course->id, $course->start_date, $course->end_date, $course->course_id, $course->location, $course->price, $course->code, $course->online);
 		
 		return $result;		
 	}
 	
-	function find_active()
+	function find_active($online=true,$inperson=true)
 	{
 		global $wpdb;
 		$table_name = $wpdb->prefix . "lms_instances";	
 		
 		$result = array();
-		$courses = $wpdb->get_results($wpdb->prepare("SELECT id, start_date, end_date, location, online, price, course_id FROM $table_name WHERE start_date > CURRENT_DATE OR online = 1 ORDER BY start_date LIMIT 5"));
+		$courses = $wpdb->get_results($wpdb->prepare("SELECT id, start_date, end_date, location, price, course_id, code, online FROM $table_name WHERE start_date > CURRENT_DATE OR online = 1 ORDER BY start_date LIMIT 5"));
 		foreach ($courses as $course) {
 				if ($course->online == "1") {
 					$location = "online";
 				} else {
 				$location = $course->location;
 				}
-			$result[] = new CourseInstance($course->id, $course->start_date, $course->end_date, $course->course_id, $location, $course->price);
+			if ($online and ($course->online == "1")) {
+  			$result[] = new CourseInstance($course->id, $course->start_date, $course->end_date, $course->course_id, $location, $course->price, $course->code, $course->online);			  
+			} elseif ($inperson and ($course->online == "0")) {
+			  $result[] = new CourseInstance($course->id, $course->start_date, $course->end_date, $course->course_id, $location, $course->price, $course->code, $course->online);
+			}
 		}
 		
 		return $result;

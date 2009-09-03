@@ -19,6 +19,7 @@ function lms_course_options()
 	$lms_template_signup_subject = get_option('lms_template_signup_subject');
 	$lms_template_signup = get_option('lms_template_signup');
 	$lms_signup_notification = get_option('lms_signup_notification');
+	$lms_moodle = get_option('lms_moodle');
 	$lms_date_format = get_option('lms_date_format');
 	
 	echo "<div class='wrap'>";
@@ -105,9 +106,17 @@ function lms_course_options()
 						<label for="lms_signup_notification"><?php _e( 'Notify the training team about new students', 'warp_lms' ); ?></label>
 					</td>
 				</tr>
+				<tr>
+					<th>
+						<?php _e( 'Moodle url', 'warp_lms'); ?>
+					</th>
+					<td>
+						<input type="text" name="lms_moodle" value="<?php echo $lms_moodle; ?>" id="lms_moodle" size="40" /><br />
+					</td>
+				</tr>
 			</tbody>
 		</table>
-		<input type="hidden" name="page_options" value="lms_courses_page_id, lms_signup_period, lms_currency, lms_contact, lms_template_signup, lms_template_signup_subject, lms_signup_notification, lms_date_format" />
+		<input type="hidden" name="page_options" value="lms_courses_page_id, lms_signup_period, lms_currency, lms_contact, lms_template_signup, lms_moodle, lms_template_signup_subject, lms_signup_notification, lms_date_format" />
 		<input type="hidden" name="action" value="update" />
 
 		<p class="submit"><input type="submit" value="<?php _e( 'Update Options', 'warp_lms'); ?>"></p>
