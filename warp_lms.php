@@ -40,7 +40,7 @@ register_deactivation_hook(__FILE__, 'unload_course_options');
 register_activation_hook(__FILE__, 'create_lms_tables');
 
 add_filter('the_content', 'filter_lms_course_schedule');
-add_filter('the_content', 'filter_lms_join_form');
+//add_filter('the_content', 'filter_lms_join_form');
 add_action('admin_head', 'lms_js_calendar' );
 add_action('wp_head', 'lms_load_jquery');
 
